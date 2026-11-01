@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxvju06xukw2o"]
+
+[ext_resource type="PackedScene" uid="uid://cqwdutlfichjb" path="res://Scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c7j754mxnbmdo" path="res://Scripts/main.gd" id="1_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://cn23jx80uxfx1" path="res://Scenes/spawner.tscn" id="5_21xkr"]
+[ext_resource type="PackedScene" uid="uid://dmjeeqq8ts3p2" path="res://killzone.tscn" id="5_kry3j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kry3j"]
+size = Vector2(1202, 2)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_jjvhh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -112.0
+offset_top = -114.0
+offset_right = 1280.0
+offset_bottom = 648.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.0784314, 0.0784314, 0.14902, 1)
+metadata/_edit_lock_ = true
+
+[node name="player" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(384, 200)
+scale = Vector2(0.22, 0.22)
+
+[node name="spawner" parent="." instance=ExtResource("5_21xkr")]
+position = Vector2(888, 104)
+
+[node name="top wall" parent="." instance=ExtResource("5_kry3j")]
+position = Vector2(-352, -949)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="top wall"]
+position = Vector2(927, 951)
+shape = SubResource("RectangleShape2D_kry3j")
+
+[node name="bot wall" parent="." instance=ExtResource("5_kry3j")]
+position = Vector2(-344, -336)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bot wall"]
+position = Vector2(927, 983)
+shape = SubResource("RectangleShape2D_kry3j")
